@@ -21,7 +21,7 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-            <a class="navbar-brand" href="#">Carousel</a>
+            <a class="navbar-brand" href="#">Django project</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -37,23 +37,27 @@
                         <a class="nav-link disabled" href="#">Disabled</a>
                     </li>
                 </ul>
-                <form class="form-inline mt-2 mt-md-0">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <form class="form-inline mt-2 mt-md-0" action="" method="post">
+                    {% csrf_token %} {{form.name}}
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Add</button>
                 </form>
             </div>
         </nav>
     </header>
 
     <main>
-        <h1>My First Heading</h1>
-        <p>My first paragraph.</p>
+        <h1 style="margin: 0 auto;width: max-content;">Country statistics</h1>
+        <br>
         <div class="list-container row">
             {% for info in all_info %}
             <div class="col-4">
                 <div class="alert alert-info">
                     <b>Country:</b> {{info.country}}
                     <p><b>Population:</b> {{info.population}}</p>
+                    <br>
+                    <p><b>Cases percent:</b> {{info.casesPercent}} %</p>
+                    <p><b>Total cases:</b> {{info.total}}</p>
+                    <p><b>New cases:</b> {{info.new}}</p>
                 </div>
             </div>
             {% endfor %}
