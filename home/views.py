@@ -3,6 +3,9 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Country
 from .forms import CountryForm
+from datetime import datetime
+
+
 # Create your views here.
 
 def hello(request):
@@ -35,9 +38,11 @@ def index(request):
             'total': covid_res['response'][0]['cases']['total'],
             'casesPercent': toFixed(covid_res['response'][0]['cases']['total'] * 100 / res[0]['population'], 5),
             'new': covid_res['response'][0]['cases']['new'],
+            'recovered': covid_res['response'][0]['cases']['recovered'],
+            'time': datetime.fromisoformat(covid_res['response'][0]['time']).strftime("%m/%d/%Y, %H:%M:%S")
         }
         all_countries.append(countryInfo)
     
-    context = { 'all_info': all_countries, 'form': form }
+    context = { 'all_info': sorted(all_countries, key=lambda x: x['total'], reverse=True), 'form': form}
 
     return render(request, 'home/index.html', context)   

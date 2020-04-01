@@ -8,12 +8,25 @@
     <style>
         main {
             padding-top: 75px;
+            background-color: #eaeaea;
         }
         
         .list-container {
             width: 60%;
             margin: 0 auto;
             text-align: center;
+        }
+        
+        .card {
+            margin-bottom: 20px;
+        }
+        
+        .card .card-text {
+            text-align: right;
+        }
+        
+        .alert {
+            padding: .15rem;
         }
     </style>
 </head>
@@ -51,14 +64,35 @@
         <div class="list-container row">
             {% for info in all_info %}
             <div class="col-4">
-                <div class="alert alert-info">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><b>{{info.country}}</b></h5>
+                        <h6 class="card-subtitle mb-2 text-muted"><b>Population:</b> {{info.population}}</h6>
+                        <div class="alert alert-danger" style="width: 49%;display: inline-grid;">
+                            <b>Total cases:</b> {{info.total}}
+                        </div>
+                        <div class="alert alert-info" style="width: 49%;display: inline-grid;">
+                            <b>Cases percent:</b> {{info.casesPercent}} %
+                        </div>
+                        <div class="alert alert-warning">
+                            <b>New cases:</b> {{info.new}}
+                        </div>
+                        <div class="alert alert-success">
+                            <b>Recovered:</b> {{info.recovered}}
+                        </div>
+                        <p class="card-text">{{info.time}}</p>
+                        <!-- <a href="#" class="card-link">Card link</a>
+                        <a href="#" class="card-link">Another link</a> -->
+                    </div>
+                </div>
+                <!-- <div class="alert alert-info">
                     <b>Country:</b> {{info.country}}
                     <p><b>Population:</b> {{info.population}}</p>
                     <br>
                     <p><b>Cases percent:</b> {{info.casesPercent}} %</p>
                     <p><b>Total cases:</b> {{info.total}}</p>
                     <p><b>New cases:</b> {{info.new}}</p>
-                </div>
+                </div> -->
             </div>
             {% endfor %}
         </div>
