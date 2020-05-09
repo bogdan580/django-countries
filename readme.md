@@ -1,3 +1,7 @@
+![Home page](home.png)
+
+![Admin panel](admin.png)
+
 #### uruchomienie wirtualnego środowiska:
 ```
 . env/bin/activate
